@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#080808">
 <title>OUR FIRST YEAR — A film by us</title>
 <style>
@@ -28,12 +28,38 @@ section{max-width:980px;margin:auto;padding:100px 22px}
 .num{font:10px Arial,sans-serif;color:#888;letter-spacing:.3em}
 h2{font-size:clamp(25px,5vw,38px);font-weight:400;letter-spacing:.1em;margin:13px 0}
 .caption{font:10px Arial,sans-serif;color:#777;letter-spacing:.2em}
-.photo{margin:0 auto 76px;max-width:760px}
-.photo img{display:block;width:100%;max-height:850px;object-fit:cover;filter:grayscale(100%);transition:filter .5s}
-.photo img:hover{filter:grayscale(35%)}
+.photo{margin:0 auto 76px;max-width:760px;opacity:0.4;transition:opacity 0.8s ease}
+.photo img{display:block;width:100%;max-height:850px;object-fit:cover;filter:grayscale(100%);transition:filter 0.8s ease}
+
+/* 画面内に入った（スクロールされた）時にカラー化＆くっきり表示 */
+.photo.is-visible {
+  opacity: 1;
+}
+.photo.is-visible img {
+  filter: grayscale(0%);
+}
+
 .photo figcaption{display:flex;justify-content:space-between;gap:15px;padding-top:13px;color:#888;font:10px Arial,sans-serif;letter-spacing:.18em}
 .photo:nth-of-type(even){max-width:610px}
 .photo:nth-of-type(3) img{max-height:680px}
+
+/* 動画セクション */
+.video-container {
+  margin: 0 auto 76px;
+  max-width: 760px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 .closing{min-height:75svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:80px 22px}
 .message{font-size:clamp(20px,4.5vw,31px);line-height:2;letter-spacing:.08em;max-width:650px;margin:30px auto}
 .jp{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
@@ -52,7 +78,7 @@ footer{text-align:center;padding:35px 15px 50px;color:#666;font:9px Arial,sans-s
   <p class="intro">One year, countless little moments.<br>And a story that is still being written.</p>
   <button class="play" id="playButton" type="button">▶ &nbsp; PLAY OUR STORY</button>
   <div id="musicStatus">TAP TO BEGIN</div>
-  <audio id="bgm" preload="none" loop src="assets/the-bones.mp3"></audio>
+  <audio id="bgm" preload="auto" loop src="assets/the-bones.mp3"></audio>
   <div class="scroll">SCROLL TO REMEMBER</div>
 </header>
 
@@ -64,25 +90,33 @@ footer{text-align:center;padding:35px 15px 50px;color:#666;font:9px Arial,sans-s
   </div>
 
   <figure class="photo">
-    <img src="assets/01-beginning.jpg" alt="二人の最初の思い出の写真" loading="lazy">
+    <img src="assets/01-beginning.jpg" alt="THE BEGINNING" loading="lazy">
     <figcaption><span>01 / THE BEGINNING</span><span>TOGETHER</span></figcaption>
   </figure>
   <figure class="photo">
-    <img src="assets/02-night.jpg" alt="イルミネーションの思い出" loading="lazy">
+    <img src="assets/02-night.jpg" alt="A BEAUTIFUL NIGHT" loading="lazy">
     <figcaption><span>02 / A BEAUTIFUL NIGHT</span><span>2025—2026</span></figcaption>
   </figure>
   <figure class="photo">
-    <img src="assets/03-memory.jpg" alt="二人で出かけた日の写真" loading="lazy">
+    <img src="assets/03-memory.jpg" alt="SIDE BY SIDE" loading="lazy">
     <figcaption><span>03 / SIDE BY SIDE</span><span>OUR DAYS</span></figcaption>
   </figure>
   <figure class="photo">
-    <img src="assets/04-days.jpg" alt="二人で過ごした時間の写真" loading="lazy">
+    <img src="assets/04-days.jpg" alt="LITTLE HAPPINESS" loading="lazy">
     <figcaption><span>04 / LITTLE HAPPINESS</span><span>JUST US</span></figcaption>
   </figure>
   <figure class="photo">
-    <img src="assets/05-us.jpg" alt="二人の思い出の写真" loading="lazy">
+    <img src="assets/05-us.jpg" alt="MORE TO COME" loading="lazy">
     <figcaption><span>05 / MORE TO COME</span><span>TO BE CONTINUED</span></figcaption>
   </figure>
+
+  <!-- CapCut 動画セクション -->
+  <div class="video-container">
+    <video id="capcutVideo" controls playsinline webkit-playsinline preload="metadata">
+      <source src="assets/movie.mp4" type="video/mp4">
+      お使いのブラウザは動画再生に対応していません。
+    </video>
+  </div>
 </section>
 
 <section class="closing">
@@ -95,9 +129,33 @@ footer{text-align:center;padding:35px 15px 50px;color:#666;font:9px Arial,sans-s
 <footer>A FILM BY US · OUR FIRST YEAR</footer>
 
 <script>
+// 1. スクロール監視：画面の中央に入ったら自動的にモノクロ→カラー化
+document.addEventListener("DOMContentLoaded", () => {
+  const photos = document.querySelectorAll('.photo');
+  const observerOptions = {
+    root: null,
+    rootMargin: "-15% 0px -15% 0px", // 画面上下15%の内側に入ったら発火
+    threshold: 0.2
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      } else {
+        entry.target.classList.remove('is-visible'); // 画面外に出たら再び白黒に戻す
+      }
+    });
+  }, observerOptions);
+
+  photos.forEach(photo => observer.observe(photo));
+});
+
+// 2. BGM ＆ 動画コントロール
 const button = document.getElementById('playButton');
 const audio = document.getElementById('bgm');
 const status = document.getElementById('musicStatus');
+const video = document.getElementById('capcutVideo');
 
 function showPlaying() {
   button.textContent = 'Ⅱ  PAUSE MUSIC';
@@ -107,6 +165,7 @@ function showPaused() {
   button.textContent = '▶  PLAY OUR STORY';
   status.textContent = 'TAP TO BEGIN';
 }
+
 button.addEventListener('click', async () => {
   if (audio.paused) {
     try {
@@ -121,8 +180,15 @@ button.addEventListener('click', async () => {
   }
 });
 
-// Try audible autoplay when the page opens.
-// Most browsers, especially iPhone Safari, may block this until the visitor taps.
+if (video) {
+  video.addEventListener('play', () => {
+    if (!audio.paused) {
+      audio.pause();
+      showPaused();
+    }
+  });
+}
+
 window.addEventListener('load', async () => {
   try {
     await audio.play();
