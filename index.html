@@ -39,7 +39,9 @@ h2{font-size:clamp(25px,5vw,38px);font-weight:400;letter-spacing:.1em;margin:13p
   filter: grayscale(0%);
 }
 
-.photo figcaption{display:flex;justify-content:space-between;gap:15px;padding-top:13px;color:#888;font:10px Arial,sans-serif;letter-spacing:.18em}
+.photo figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:15px;padding-top:13px;color:#888;font:11px "Hiragino Sans","Hiragino Kaku Gothic ProN",Arial,sans-serif;letter-spacing:.12em}
+.photo figcaption .date{color:#aaa;font-weight:bold;letter-spacing:.08em}
+.photo figcaption .text{text-align:right;color:#ececec}
 .photo:nth-of-type(even){max-width:610px}
 .photo:nth-of-type(3) img{max-height:680px}
 
@@ -89,25 +91,49 @@ footer{text-align:center;padding:35px 15px 50px;color:#666;font:9px Arial,sans-s
     <div class="caption">A FEW FRAMES FROM OUR FIRST YEAR</div>
   </div>
 
+  <!-- 写真 01 -->
   <figure class="photo">
-    <img src="assets/01-beginning.jpg" alt="THE BEGINNING" loading="lazy">
-    <figcaption><span>01 / THE BEGINNING</span><span>TOGETHER</span></figcaption>
+    <img src="assets/01-beginning.jpg" alt="初泊まりデートin NAGOYA" loading="lazy">
+    <figcaption>
+      <span class="date">2026/12/21</span>
+      <span class="text">初泊まりデートin NAGOYA</span>
+    </figcaption>
   </figure>
+
+  <!-- 写真 02 -->
   <figure class="photo">
-    <img src="assets/02-night.jpg" alt="A BEAUTIFUL NIGHT" loading="lazy">
-    <figcaption><span>02 / A BEAUTIFUL NIGHT</span><span>2025—2026</span></figcaption>
+    <img src="assets/02-night.jpg" alt="この写真過去一きれいに撮れた自信ある" loading="lazy">
+    <figcaption>
+      <span class="date">2026/12/21</span>
+      <span class="text">この写真過去一きれいに撮れた自信ある</span>
+    </figcaption>
   </figure>
+
+  <!-- 写真 03 -->
   <figure class="photo">
-    <img src="assets/03-memory.jpg" alt="SIDE BY SIDE" loading="lazy">
-    <figcaption><span>03 / SIDE BY SIDE</span><span>OUR DAYS</span></figcaption>
+    <img src="assets/03-memory.jpg" alt="インフル移したのがちでごめんね" loading="lazy">
+    <figcaption>
+      <span class="date">2026/2/19</span>
+      <span class="text">インフル移したのがちでごめんね</span>
+    </figcaption>
   </figure>
+
+  <!-- 写真 04 -->
   <figure class="photo">
-    <img src="assets/04-days.jpg" alt="LITTLE HAPPINESS" loading="lazy">
-    <figcaption><span>04 / LITTLE HAPPINESS</span><span>JUST US</span></figcaption>
+    <img src="assets/04-days.jpg" alt="めっちゃビジュがいい写真" loading="lazy">
+    <figcaption>
+      <span class="date">2026/9/13</span>
+      <span class="text">めっちゃビジュがいい写真</span>
+    </figcaption>
   </figure>
+
+  <!-- 写真 05 -->
   <figure class="photo">
-    <img src="assets/05-us.jpg" alt="MORE TO COME" loading="lazy">
-    <figcaption><span>05 / MORE TO COME</span><span>TO BE CONTINUED</span></figcaption>
+    <img src="assets/05-us.jpg" alt="いつでもかわいいななみ" loading="lazy">
+    <figcaption>
+      <span class="date">2026/10/17</span>
+      <span class="text">いつでもかわいいななみ</span>
+    </figcaption>
   </figure>
 
   <!-- CapCut 動画セクション -->
@@ -134,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const photos = document.querySelectorAll('.photo');
   const observerOptions = {
     root: null,
-    rootMargin: "-15% 0px -15% 0px", // 画面上下15%の内側に入ったら発火
+    rootMargin: "-15% 0px -15% 0px",
     threshold: 0.2
   };
 
@@ -143,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
       } else {
-        entry.target.classList.remove('is-visible'); // 画面外に出たら再び白黒に戻す
+        entry.target.classList.remove('is-visible');
       }
     });
   }, observerOptions);
