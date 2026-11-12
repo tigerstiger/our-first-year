@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -5,225 +6,600 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#080808">
 <title>OUR FIRST YEAR — A film by us</title>
+
 <style>
-:root{--bg:#080808;--fg:#f4f2ed;--muted:#999;--line:#333}
+:root{
+  --bg:#080808;
+  --fg:#f4f2ed;
+  --muted:#999;
+  --line:#333;
+}
+
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,"Times New Roman",serif;letter-spacing:.02em}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:Georgia,"Times New Roman",serif;
+  letter-spacing:.02em;
+}
+
 button{font:inherit}
-.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 22px;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center, #242424 0%, #080808 68%);z-index:0}
-.hero>*{position:relative;z-index:1}
-.kicker{font:11px/1.6 Arial,sans-serif;letter-spacing:.42em;color:#aaa;text-transform:uppercase}
-h1{font-size:clamp(42px,10vw,88px);font-weight:400;letter-spacing:.055em;margin:25px 0 14px}
-.subtitle{font:11px Arial,sans-serif;letter-spacing:.3em;color:#aaa}
-.rule{width:52px;height:1px;background:#777;margin:30px auto}
-.intro{max-width:430px;color:#aaa;font-size:15px;line-height:1.9}
-.play{margin-top:30px;border:1px solid #aaa;color:#fff;background:transparent;padding:15px 24px;letter-spacing:.18em;font:11px Arial,sans-serif;cursor:pointer;transition:.25s}
-.play:hover{background:#fff;color:#080808}
-#musicStatus{font:10px Arial,sans-serif;color:#777;margin-top:12px;letter-spacing:.12em}
-.scroll{position:absolute;bottom:28px;font:9px Arial,sans-serif;letter-spacing:.3em;color:#777}
-section{max-width:980px;margin:auto;padding:100px 22px}
-.section-head{text-align:center;margin-bottom:48px}
-.num{font:10px Arial,sans-serif;color:#888;letter-spacing:.3em}
-h2{font-size:clamp(25px,5vw,38px);font-weight:400;letter-spacing:.1em;margin:13px 0}
-.caption{font:10px Arial,sans-serif;color:#777;letter-spacing:.2em}
-.photo{margin:0 auto 76px;max-width:760px;opacity:0.4;transition:opacity 0.8s ease}
-.photo img{display:block;width:100%;max-height:850px;object-fit:cover;filter:grayscale(100%);transition:filter 0.8s ease}
 
-/* 画面内に入った（スクロールされた）時にカラー化＆くっきり表示 */
-.photo.is-visible {
-  opacity: 1;
-}
-.photo.is-visible img {
-  filter: grayscale(0%);
+.hero{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:32px 22px;
+  position:relative;
+  overflow:hidden;
 }
 
-.photo figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:15px;padding-top:13px;color:#888;font:11px "Hiragino Sans","Hiragino Kaku Gothic ProN",Arial,sans-serif;letter-spacing:.12em}
-.photo figcaption .date{color:#aaa;font-weight:bold;letter-spacing:.08em}
-.photo figcaption .text{text-align:right;color:#ececec}
-.photo:nth-of-type(even){max-width:610px}
-.photo:nth-of-type(3) img{max-height:680px}
-
-/* 動画セクション */
-.video-container {
-  margin: 0 auto 76px;
-  max-width: 760px;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  border: 1px solid var(--line);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
-.video-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(
+    ellipse at center,
+    #242424 0%,
+    #080808 68%
+  );
+  z-index:0;
 }
 
-.closing{min-height:75svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:80px 22px}
-.message{font-size:clamp(20px,4.5vw,31px);line-height:2;letter-spacing:.08em;max-width:650px;margin:30px auto}
-.jp{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
-.end{font:10px Arial,sans-serif;color:#777;letter-spacing:.32em;margin-top:45px}
-footer{text-align:center;padding:35px 15px 50px;color:#666;font:9px Arial,sans-serif;letter-spacing:.25em}
-@media(min-width:700px){.photo:nth-of-type(odd){margin-left:8%}.photo:nth-of-type(even){margin-right:8%}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+.hero>*{
+  position:relative;
+  z-index:1;
+}
+
+.kicker{
+  font:11px/1.6 Arial,sans-serif;
+  letter-spacing:.42em;
+  color:#aaa;
+  text-transform:uppercase;
+}
+
+h1{
+  font-size:clamp(42px,10vw,88px);
+  font-weight:400;
+  letter-spacing:.055em;
+  margin:25px 0 14px;
+}
+
+.subtitle{
+  font:11px Arial,sans-serif;
+  letter-spacing:.3em;
+  color:#aaa;
+}
+
+.rule{
+  width:52px;
+  height:1px;
+  background:#777;
+  margin:30px auto;
+}
+
+.intro{
+  max-width:430px;
+  color:#aaa;
+  font-size:15px;
+  line-height:1.9;
+}
+
+.play{
+  margin-top:30px;
+  border:1px solid #aaa;
+  color:#fff;
+  background:transparent;
+  padding:15px 24px;
+  letter-spacing:.18em;
+  font:11px Arial,sans-serif;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.play:hover{
+  background:#fff;
+  color:#080808;
+}
+
+#musicStatus{
+  font:10px Arial,sans-serif;
+  color:#777;
+  margin-top:12px;
+  letter-spacing:.12em;
+}
+
+.scroll{
+  position:absolute;
+  bottom:28px;
+  font:9px Arial,sans-serif;
+  letter-spacing:.3em;
+  color:#777;
+}
+
+section{
+  max-width:980px;
+  margin:auto;
+  padding:100px 22px;
+}
+
+.section-head{
+  text-align:center;
+  margin-bottom:48px;
+}
+
+.num{
+  font:10px Arial,sans-serif;
+  color:#888;
+  letter-spacing:.3em;
+}
+
+h2{
+  font-size:clamp(25px,5vw,38px);
+  font-weight:400;
+  letter-spacing:.1em;
+  margin:13px 0;
+}
+
+.caption{
+  font:10px Arial,sans-serif;
+  color:#777;
+  letter-spacing:.2em;
+}
+
+.photo{
+  margin:0 auto 76px;
+  max-width:760px;
+  opacity:.4;
+  transition:opacity .8s ease;
+}
+
+.photo img{
+  display:block;
+  width:100%;
+  max-height:850px;
+  object-fit:cover;
+  filter:grayscale(100%);
+  transition:filter .8s ease;
+}
+
+.photo.is-visible{
+  opacity:1;
+}
+
+.photo.is-visible img{
+  filter:grayscale(0%);
+}
+
+.photo figcaption{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:15px;
+  padding-top:13px;
+  color:#888;
+  font:11px "Hiragino Sans",
+  "Hiragino Kaku Gothic ProN",Arial,sans-serif;
+  letter-spacing:.12em;
+}
+
+.photo figcaption .date{
+  color:#aaa;
+  font-weight:bold;
+  letter-spacing:.08em;
+}
+
+.photo figcaption .text{
+  text-align:right;
+  color:#ececec;
+}
+
+.photo:nth-of-type(even){
+  max-width:610px;
+}
+
+.photo:nth-of-type(3) img{
+  max-height:680px;
+}
+
+/* YouTube動画 */
+
+.video-container{
+  margin:0 auto 76px;
+  max-width:760px;
+  width:100%;
+  aspect-ratio:16 / 9;
+  background:#000;
+  border:1px solid var(--line);
+  box-shadow:0 10px 30px rgba(0,0,0,.8);
+  overflow:hidden;
+}
+
+.video-container iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+
+.closing{
+  min-height:75svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:80px 22px;
+}
+
+.message{
+  font-size:clamp(20px,4.5vw,31px);
+  line-height:2;
+  letter-spacing:.08em;
+  max-width:650px;
+  margin:30px auto;
+}
+
+.jp{
+  font-family:"Hiragino Mincho ProN",
+  "Yu Mincho",serif;
+}
+
+.end{
+  font:10px Arial,sans-serif;
+  color:#777;
+  letter-spacing:.32em;
+  margin-top:45px;
+}
+
+footer{
+  text-align:center;
+  padding:35px 15px 50px;
+  color:#666;
+  font:9px Arial,sans-serif;
+  letter-spacing:.25em;
+}
+
+@media(min-width:700px){
+  .photo:nth-of-type(odd){
+    margin-left:8%;
+  }
+
+  .photo:nth-of-type(even){
+    margin-right:8%;
+  }
+}
+
+@media(max-width:480px){
+  .photo figcaption{
+    font-size:10px;
+    gap:10px;
+  }
+
+  .photo figcaption .date{
+    white-space:nowrap;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important}
+}
 </style>
 </head>
+
 <body>
+
+<!-- INTRODUCTION -->
+
 <header class="hero">
+
   <div class="kicker">A FILM BY US</div>
+
   <h1>OUR FIRST YEAR.</h1>
-  <div class="subtitle">CHAPTER 01 · 2025 — 2026</div>
+
+  <div class="subtitle">
+    CHAPTER 01 · 2025 — 2026
+  </div>
+
   <div class="rule"></div>
-  <p class="intro">One year, countless little moments.<br>And a story that is still being written.</p>
-  <button class="play" id="playButton" type="button">▶ &nbsp; PLAY OUR STORY</button>
+
+  <p class="intro">
+    One year, countless little moments.<br>
+    And a story that is still being written.
+  </p>
+
+  <button class="play" id="playButton" type="button">
+    ▶ &nbsp; PLAY OUR STORY
+  </button>
+
   <div id="musicStatus">TAP TO BEGIN</div>
-  <audio id="bgm" preload="auto" loop src="assets/the-bones.mp3"></audio>
+
+  <audio
+    id="bgm"
+    preload="none"
+    loop
+    src="assets/the-bones.mp3">
+  </audio>
+
   <div class="scroll">SCROLL TO REMEMBER</div>
+
 </header>
 
+
+<!-- MEMORIES -->
+
 <section>
+
   <div class="section-head">
     <div class="num">01 — THE MOMENTS</div>
     <h2>OUR MEMORIES</h2>
-    <div class="caption">A FEW FRAMES FROM OUR FIRST YEAR</div>
+    <div class="caption">
+      A FEW FRAMES FROM OUR FIRST YEAR
+    </div>
   </div>
 
-  <!-- 写真 01 -->
+
+  <!-- PHOTO 01 -->
+
   <figure class="photo">
-    <img src="assets/01-beginning.jpg" alt="初泊まりデートin NAGOYA" loading="lazy">
+    <img
+      src="assets/01-beginning.jpg"
+      alt="初泊まりデートin NAGOYA"
+      loading="lazy">
+
     <figcaption>
       <span class="date">2026/12/21</span>
       <span class="text">初泊まりデートin NAGOYA</span>
     </figcaption>
   </figure>
 
-  <!-- 写真 02 -->
+
+  <!-- PHOTO 02 -->
+
   <figure class="photo">
-    <img src="assets/02-night.jpg" alt="この写真過去一きれいに撮れた自信ある" loading="lazy">
+    <img
+      src="assets/02-night.jpg"
+      alt="この写真過去一きれいに撮れた自信ある"
+      loading="lazy">
+
     <figcaption>
       <span class="date">2026/12/21</span>
       <span class="text">この写真過去一きれいに撮れた自信ある</span>
     </figcaption>
   </figure>
 
-  <!-- 写真 03 -->
+
+  <!-- PHOTO 03 -->
+
   <figure class="photo">
-    <img src="assets/03-memory.jpg" alt="インフル移したのがちでごめんね" loading="lazy">
+    <img
+      src="assets/03-memory.jpg"
+      alt="インフル移したのがちでごめんね"
+      loading="lazy">
+
     <figcaption>
       <span class="date">2026/2/19</span>
       <span class="text">インフル移したのがちでごめんね</span>
     </figcaption>
   </figure>
 
-  <!-- 写真 04 -->
+
+  <!-- PHOTO 04 -->
+
   <figure class="photo">
-    <img src="assets/04-days.jpg" alt="めっちゃビジュがいい写真" loading="lazy">
+    <img
+      src="assets/04-days.jpg"
+      alt="めっちゃビジュがいい写真"
+      loading="lazy">
+
     <figcaption>
       <span class="date">2026/9/13</span>
       <span class="text">めっちゃビジュがいい写真</span>
     </figcaption>
   </figure>
 
-  <!-- 写真 05 -->
+
+  <!-- PHOTO 05 -->
+
   <figure class="photo">
-    <img src="assets/05-us.jpg" alt="いつでもかわいいななみ" loading="lazy">
+    <img
+      src="assets/05-us.jpg"
+      alt="いつでもかわいいななみ"
+      loading="lazy">
+
     <figcaption>
       <span class="date">2026/10/17</span>
       <span class="text">いつでもかわいいななみ</span>
     </figcaption>
   </figure>
 
-  <!-- CapCut 動画セクション -->
+
+  <!-- YOUTUBE ANNIVERSARY MOVIE -->
+
   <div class="video-container">
-    <video id="capcutVideo" controls playsinline webkit-playsinline preload="metadata">
-      <source src="assets/movie.mp4" type="video/mp4">
-      お使いのブラウザは動画再生に対応していません。
-    </video>
+
+    <iframe
+      id="anniversaryVideo"
+      src="https://www.youtube-nocookie.com/embed/oqwMGZm2Nlg?enablejsapi=1"
+      title="OUR FIRST YEAR - Anniversary Movie"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+
   </div>
+
 </section>
+
+
+<!-- ENDING -->
 
 <section class="closing">
-  <div class="num">THE END OF CHAPTER ONE</div>
-  <p class="message jp">1年間ありがとう。<br>これからも一緒にたくさん思い出を作ろうね。</p>
+
+  <div class="num">
+    THE END OF CHAPTER ONE
+  </div>
+
+  <p class="message jp">
+    1年間ありがとう。<br>
+    これからも一緒にたくさん思い出を作ろうね。
+  </p>
+
   <div class="rule"></div>
-  <div class="kicker">TO BE CONTINUED...</div>
-  <div class="end">WITH LOVE · NOVEMBER 2026</div>
+
+  <div class="kicker">
+    TO BE CONTINUED...
+  </div>
+
+  <div class="end">
+    WITH LOVE · NOVEMBER 2026
+  </div>
+
 </section>
-<footer>A FILM BY US · OUR FIRST YEAR</footer>
+
+
+<footer>
+  A FILM BY US · OUR FIRST YEAR
+</footer>
+
 
 <script>
-// 1. スクロール監視：画面の中央に入ったら自動的にモノクロ→カラー化
+
+// 1. 写真のスクロール演出
+
 document.addEventListener("DOMContentLoaded", () => {
-  const photos = document.querySelectorAll('.photo');
+
+  const photos = document.querySelectorAll(".photo");
+
   const observerOptions = {
     root: null,
     rootMargin: "-15% 0px -15% 0px",
     threshold: 0.2
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      } else {
-        entry.target.classList.remove('is-visible');
-      }
-    });
-  }, observerOptions);
+  const observer = new IntersectionObserver(
+    (entries) => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+        }else{
+          entry.target.classList.remove("is-visible");
+        }
+
+      });
+
+    },
+    observerOptions
+  );
 
   photos.forEach(photo => observer.observe(photo));
+
 });
 
-// 2. BGM ＆ 動画コントロール
-const button = document.getElementById('playButton');
-const audio = document.getElementById('bgm');
-const status = document.getElementById('musicStatus');
-const video = document.getElementById('capcutVideo');
 
-function showPlaying() {
-  button.textContent = 'Ⅱ  PAUSE MUSIC';
-  status.textContent = 'NOW PLAYING';
-}
-function showPaused() {
-  button.textContent = '▶  PLAY OUR STORY';
-  status.textContent = 'TAP TO BEGIN';
+// 2. BGMコントロール
+
+const button = document.getElementById("playButton");
+const audio = document.getElementById("bgm");
+const status = document.getElementById("musicStatus");
+
+function showPlaying(){
+
+  button.textContent = "Ⅱ  PAUSE MUSIC";
+  status.textContent = "NOW PLAYING";
+
 }
 
-button.addEventListener('click', async () => {
-  if (audio.paused) {
-    try {
+function showPaused(){
+
+  button.textContent = "▶  PLAY OUR STORY";
+  status.textContent = "TAP TO BEGIN";
+
+}
+
+button.addEventListener("click", async () => {
+
+  if(audio.paused){
+
+    try{
+
       await audio.play();
       showPlaying();
-    } catch (e) {
-      status.textContent = 'MUSIC COULD NOT START — CHECK THE AUDIO FILE';
+
+    }catch(error){
+
+      status.textContent =
+        "MUSIC COULD NOT START — CHECK THE AUDIO FILE";
+
     }
-  } else {
+
+  }else{
+
     audio.pause();
     showPaused();
+
   }
+
 });
 
-if (video) {
-  video.addEventListener('play', () => {
-    if (!audio.paused) {
-      audio.pause();
-      showPaused();
+audio.addEventListener("ended", showPaused);
+
+
+// 3. YouTube再生時にBGMを自動停止
+
+let youtubePlayer;
+
+function onYouTubeIframeAPIReady(){
+
+  youtubePlayer = new YT.Player("anniversaryVideo", {
+
+    events: {
+
+      onStateChange: function(event){
+
+        // YouTube動画が再生されたとき
+        if(event.data === YT.PlayerState.PLAYING){
+
+          if(!audio.paused){
+
+            audio.pause();
+            showPaused();
+
+          }
+
+        }
+
+      }
+
     }
+
   });
+
 }
 
-window.addEventListener('load', async () => {
-  try {
-    await audio.play();
-    showPlaying();
-  } catch (e) {
-    status.textContent = 'TAP PLAY TO START THE MUSIC';
-  }
-});
-audio.addEventListener('ended', showPaused);
+
+// YouTube IFrame APIを読み込む
+
+const youtubeScript = document.createElement("script");
+
+youtubeScript.src = "https://www.youtube.com/iframe_api";
+
+document.head.appendChild(youtubeScript);
+
 </script>
+
 </body>
 </html>
